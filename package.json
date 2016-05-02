@@ -1,0 +1,60 @@
+{
+    "author": "Steven Olmsted <steven.olmsted@ibigroup.com>",
+    "babel": {
+        "plugins": [
+            "transform-runtime"
+        ],
+        "presets": [
+            "es2015"
+        ],
+        "sourceMaps": "inline"
+    },
+    "contributors": [
+        "Duane Sibilly <duane.sibilly@ibigroup.com>"
+    ],
+    "dependencies": {
+        "babel-runtime": "~6.6.1"
+    },
+    "description": "A generator that walks the prototype chain of an object.",
+    "devDependencies": {
+        "babel-cli": "~6.7.7",
+        "babel-istanbul": "~0.8.0",
+        "babel-plugin-transform-runtime": "~6.7.5",
+        "babel-preset-es2015": "~6.6.0",
+        "chai": "~3.5.0",
+        "eslint": "~2.8.0",
+        "eslint-config-isotropic": "~0.0.0",
+        "in-publish": "~2.0.0",
+        "mocha": "~2.4.5"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "es6": true,
+            "node": true
+        },
+        "extends": "isotropic",
+        "parserOptions": {
+            "ecmaFeatures": {
+                "experimentalObjectRestSpread": true,
+                "globalReturn": false,
+                "jsx": false
+            },
+            "ecmaVersion": 6,
+            "sourceType": "module"
+        },
+        "root": true
+    },
+    "license": "BSD-3-Clause",
+    "main": "lib/prototype-chain.js",
+    "name": "isotropic-prototype-chain",
+    "scripts": {
+        "build": "babel js -d lib",
+        "lint": "eslint js test",
+        "posttest": "[ -z \"$npm_config_coverage\" ] || babel-istanbul check-coverage --branches 100 --functions 100 --lines 100 --statements 100",
+        "prepublish": "not-in-install && npm test --coverage && npm run build",
+        "pretest": "npm run lint",
+        "test": "babel-node ./node_modules/.bin/babel-istanbul test _mocha"
+    },
+    "version": "0.0.0"
+}
