@@ -76,5 +76,5 @@
         "securityCheck": "nsp check",
         "test": "babel-node ./node_modules/.bin/babel-istanbul test _mocha"
     },
-    "version": "0.4.0"
+    "version": "0.5.0"
 }
