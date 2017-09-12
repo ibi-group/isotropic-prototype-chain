@@ -1,16 +1,9 @@
-import {
-    describe,
-    it
-} from 'mocha';
+import _chai from 'chai';
+import _mocha from 'mocha';
+import _prototypeChain from '../js/prototype-chain.js';
 
-import {
-    expect
-} from 'chai';
-
-import prototypeChain from '../js/prototype-chain.js';
-
-describe('prototype-chain', () => {
-    it('should yield object prototypes', () => {
+_mocha.describe('prototype-chain', () => {
+    _mocha.it('should yield object prototypes', () => {
         const a = {},
             b = {},
             c = {},
@@ -23,11 +16,11 @@ describe('prototype-chain', () => {
         Reflect.setPrototypeOf(c, d);
         Reflect.setPrototypeOf(d, e);
 
-        for (const object of prototypeChain(a)) {
+        for (const object of _prototypeChain(a)) {
             objects.push(object);
         }
 
-        expect(objects).to.deep.equal([
+        _chai.expect(objects).to.deep.equal([
             a,
             b,
             c,
