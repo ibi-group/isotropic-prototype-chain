@@ -4,16 +4,21 @@
         "env": {
             "build": {
                 "presets": [
-                    "minify"
+                    "babel-preset-minify"
+                ]
+            },
+            "test": {
+                "plugins": [
+                    "babel-plugin-istanbul"
                 ]
             }
         },
         "plugins": [
-            "transform-line"
+            "babel-plugin-transform-line"
         ],
         "presets": [
             [
-                "env",
+                "@babel/preset-env",
                 {
                     "targets": {
                         "node": "current"
@@ -29,20 +34,23 @@
     ],
     "description": "A generator that walks the prototype chain of an object.",
     "devDependencies": {
-        "babel-cli": "~6.26.0",
-        "babel-istanbul": "~0.12.2",
-        "babel-plugin-transform-line": "~0.4.0",
-        "babel-preset-env": "~1.6.0",
-        "babel-preset-minify": "~0.2.0",
-        "chai": "~4.1.2",
-        "eslint": "~4.6.1",
-        "eslint-plugin-isotropic": "~0.1.0",
-        "mocha": "~3.5.1",
-        "nsp": "~2.8.0"
+        "@babel/cli": "~7.1.5",
+        "@babel/core": "~7.1.6",
+        "babel-plugin-istanbul": "~5.1.0",
+        "babel-plugin-transform-line": "~0.5.0",
+        "@babel/preset-env": "~7.1.6",
+        "babel-preset-minify": "~0.5.0",
+        "@babel/register": "~7.0.0",
+        "chai": "~4.2.0",
+        "cross-env": "~5.2.0",
+        "eslint": "~5.9.0",
+        "eslint-plugin-isotropic": "~0.2.0",
+        "mocha": "~5.2.0",
+        "nyc": "~13.1.0"
     },
     "engines": {
-        "node": "^8.4.0",
-        "npm": "^5.4.1"
+        "node": "^10.13.0",
+        "npm": "^6.4.1"
     },
     "eslintConfig": {
         "env": {
@@ -53,12 +61,11 @@
         "extends": "plugin:isotropic/isotropic",
         "parserOptions": {
             "ecmaFeatures": {
-                "experimentalObjectRestSpread": true,
                 "globalReturn": false,
                 "impliedStrict": true,
                 "jsx": false
             },
-            "ecmaVersion": 2017,
+            "ecmaVersion": 2018,
             "sourceType": "module"
         },
         "plugins": [
@@ -70,16 +77,32 @@
     "license": "BSD-3-Clause",
     "main": "lib/prototype-chain.js",
     "name": "isotropic-prototype-chain",
+    "nyc": {
+        "branches": 100,
+        "check-coverage": false,
+        "functions": 100,
+        "instrument": false,
+        "lines": 100,
+        "per-file": false,
+        "reporter": [
+            "lcov",
+            "text-summary"
+        ],
+        "require": [
+            "@babel/register"
+        ],
+        "sourceMap": false,
+        "statements": 100
+    },
     "repository": "ibi-group/isotropic-prototype-chain",
     "scripts": {
         "build": "BABEL_ENV=build babel js -d lib",
         "lint": "eslint js test",
-        "posttest": "[ -z \"$npm_config_coverage\" ] || babel-istanbul check-coverage --branches 100 --functions 100 --lines 100 --statements 100",
+        "posttest": "[ -z \"$npm_config_coverage\" ] || nyc check-coverage",
         "prepare": "npm run build",
-        "prepublishOnly": "npm run securityCheck && npm test --coverage",
+        "prepublishOnly": "npm test --coverage",
         "pretest": "npm run lint",
-        "securityCheck": "nsp check",
-        "test": "babel-node ./node_modules/.bin/babel-istanbul test _mocha"
+        "test": "cross-env BABEL_ENV=test nyc mocha"
     },
-    "version": "0.6.0"
+    "version": "0.7.0"
 }
