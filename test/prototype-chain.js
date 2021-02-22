@@ -1,5 +1,5 @@
-import _chai from 'chai';
-import _mocha from 'mocha';
+import _chai from 'isotropic-dev-dependencies/lib/chai.js';
+import _mocha from 'isotropic-dev-dependencies/lib/mocha.js';
 import _prototypeChain from '../js/prototype-chain.js';
 
 _mocha.describe('prototype-chain', () => {
