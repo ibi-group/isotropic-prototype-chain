@@ -6,7 +6,7 @@
         "isotropic-dev-dependencies": "~0.1.0"
     },
     "engines": {
-        "node": "^22.5.0",
+        "node": "^22.5.1",
         "npm": "^10.8.2"
     },
     "files": [
