@@ -1,16 +1,13 @@
 {
     "author": "Steven Olmsted <steven.olmsted@ibigroup.com>",
     "bugs": "https://github.com/ibi-group/isotropic-prototype-chain/issues",
-    "contributors": [
-        "Duane Sibilly <duane.sibilly@ibigroup.com>"
-    ],
     "description": "A generator that walks the prototype chain of an object",
     "devDependencies": {
-        "isotropic-dev-dependencies": "~0.1.0"
+        "isotropic-dev-dependencies": "~0.3.0"
     },
     "engines": {
-        "node": "^14.15.5",
-        "npm": "^7.5.4"
+        "node": "^22.5.1",
+        "npm": "^10.8.2"
     },
     "files": [
         "lib"
@@ -22,17 +19,17 @@
     "license": "BSD-3-Clause",
     "main": "lib/prototype-chain.js",
     "name": "isotropic-prototype-chain",
-    "repository": "ibi-group/isotropic-prototype-chain",
+    "repository": "github:ibi-group/isotropic-prototype-chain",
     "scripts": {
-        "build": "cross-env BABEL_ENV=node-minify babel --config-file ./node_modules/isotropic-dev-dependencies/config/babel.json js -d lib",
-        "lint": "eslint -c ./node_modules/isotropic-dev-dependencies/config/eslint-module.json --no-eslintrc --resolve-plugins-relative-to ./node_modules/isotropic-dev-dependencies js test",
-        "postinstall": "husky install ./node_modules/isotropic-dev-dependencies/hooks",
-        "postpublish": "pinst --enable",
-        "posttest": "[ -z \"$npm_config_coverage\" ] || nyc --nycrc-path ./node_modules/isotropic-dev-dependencies/config/nyc.json check-coverage",
+        "build": "cross-env BABEL_ENV=node-minify babel --config-file ./node_modules/isotropic-dev-dependencies/config/babel.json js -d lib --delete-dir-on-start",
+        "lint": "eslint js test",
+        "postprepare": "node ./node_modules/isotropic-dev-dependencies/lib/install-git-hooks.js",
+        "posttest": "[ -z \"$npm_config_coverage\" ] || c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json check-coverage",
         "prepare": "npm run build",
-        "prepublishOnly": "npm test --coverage && pinst --disable",
+        "prepublishOnly": "npm test --coverage",
         "pretest": "npm run lint",
-        "test": "cross-env BABEL_ENV=test nyc --nycrc-path ./node_modules/isotropic-dev-dependencies/config/nyc.json mocha"
+        "test": "cross-env BABEL_ENV=test c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json mocha --import=isotropic-dev-dependencies/lib/register-babel-loader.js"
     },
-    "version": "0.12.0"
+    "type": "module",
+    "version": "0.13.0"
 }
