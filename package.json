@@ -3,6 +3,7 @@
     "bugs": "https://github.com/ibi-group/isotropic-prototype-chain/issues",
     "description": "A generator that walks the prototype chain of an object",
     "devDependencies": {
+        "eslint": "~9.8.0",
         "isotropic-dev-dependencies": "~0.3.0"
     },
     "engines": {
