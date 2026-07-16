@@ -3,34 +3,36 @@
     "bugs": "https://github.com/ibi-group/isotropic-prototype-chain/issues",
     "description": "A generator that walks the prototype chain of an object",
     "devDependencies": {
-        "eslint": "~9.8.0",
-        "isotropic-dev-dependencies": "~0.3.1"
+        "isotropic-dev-dependencies": "~0.4.0"
     },
     "engines": {
-        "node": "^22.5.1",
-        "npm": "^10.8.2"
+        "node": "^26.5.0",
+        "npm": "^11.17.0"
     },
     "files": [
         "lib"
     ],
     "homepage": "https://github.com/ibi-group/isotropic-prototype-chain",
     "keywords": [
-        "isotropic"
+        "iterate",
+        "isotropic",
+        "prototype",
+        "prototype-chain",
+        "reflection",
+        "walk"
     ],
     "license": "BSD-3-Clause",
     "main": "lib/prototype-chain.js",
     "name": "isotropic-prototype-chain",
     "repository": "github:ibi-group/isotropic-prototype-chain",
     "scripts": {
-        "build": "cross-env BABEL_ENV=node-minify babel --config-file ./node_modules/isotropic-dev-dependencies/config/babel.json js -d lib --delete-dir-on-start",
-        "lint": "eslint js test",
-        "postprepare": "node ./node_modules/isotropic-dev-dependencies/lib/install-git-hooks.js",
-        "posttest": "[ -z \"$npm_config_coverage\" ] || c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json check-coverage",
-        "prepare": "npm run build",
-        "prepublishOnly": "npm test --coverage",
+        "lint": "eslint eslint.config.js lib test",
+        "posttest": "c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json check-coverage",
+        "prepare": "node ./node_modules/isotropic-dev-dependencies/lib/install-git-hooks.js",
+        "prepublishOnly": "npm test",
         "pretest": "npm run lint",
-        "test": "cross-env BABEL_ENV=test c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json mocha --import=isotropic-dev-dependencies/lib/register-babel-loader.js"
+        "test": "c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json node --test"
     },
     "type": "module",
-    "version": "0.13.1"
+    "version": "0.14.0"
 }

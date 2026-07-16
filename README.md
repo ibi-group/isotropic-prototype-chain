@@ -33,10 +33,10 @@ class Dog extends Mammal {}
 const dog = new Dog();
 
 // Iterate through the prototype chain
-for (const prototype of prototypeChain(dog)) {
+for (const prototype of _prototypeChain(dog)) {
     console.log(prototype);
 }
-// Outputs: Dog instance, Mammal.prototype, Animal.prototype, Object.prototype, null
+// Outputs: dog (instance), Dog.prototype, Mammal.prototype, Animal.prototype, Object.prototype
 ```
 
 ## API
@@ -142,7 +142,7 @@ class C extends B {
     methodC() {}
 }
 
-console.log(...getPropertyNameSet(new C()));
+console.log(..._getPropertyNameSet(new C()));
 // Outputs: propA propB propC constructor methodC methodB methodA, etc.
 ```
 
