@@ -24,7 +24,10 @@
     "license": "BSD-3-Clause",
     "main": "lib/prototype-chain.js",
     "name": "isotropic-prototype-chain",
-    "repository": "github:ibi-group/isotropic-prototype-chain",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ibi-group/isotropic-prototype-chain.git"
+    },
     "scripts": {
         "lint": "eslint eslint.config.js lib test",
         "posttest": "c8 -c ./node_modules/isotropic-dev-dependencies/config/c8.json check-coverage",
