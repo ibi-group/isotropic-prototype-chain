@@ -1,4 +1,13 @@
-# Changelog
+# isotropic-prototype-chain Changelog
+
+## 0.14.1 - 2026-08-23
+
+### Changed
+
+- Recommends `node ^26.7.0` / `npm ^11.19.0`.
+- `repository` now uses npm's preferred object form with explicit `type` and `url` properties rather than the `github:` shorthand. This is package metadata only.
+
+No runtime behavior changed in this release.
 
 ## 0.14.0 - 2026-07-15
 
@@ -28,7 +37,7 @@ Nothing to change beyond running on Node 26.
 
 ### Changed
 
-- A comprehensive README was added, documenting the full public interface with worked examples.
+- A comprehensive README was added, documenting the full public interface with examples.
 - `eslint` pinned at `~9.8.0` as a direct dev dependency to guarantee the intended version is installed.
 - `isotropic-dev-dependencies` bumped to `~0.3.1`.
 
@@ -54,7 +63,7 @@ import _prototypeChain from 'isotropic-prototype-chain';
 
 ### Changed
 
-- ESLint moved to flat config (`eslint.config.js`); the `eslintConfig` block was removed from `package.json`.
+- ESLint moved to flat config (`eslint.config.js`) so the `eslintConfig` block was removed from `package.json`.
 - Coverage tooling switched from `nyc` to `c8`.
 - `repository` given an explicit `github:` prefix.
 - Recommends `node ^22.5.1` / `npm ^10.8.2`.
@@ -65,7 +74,9 @@ No runtime behavior changed in this release.
 
 ### Changed
 
-- The entire dev toolchain was replaced by a single `isotropic-dev-dependencies` dev dependency. The Babel, ESLint, and nyc configuration blocks were removed from `package.json` in favor of shared configuration, and git hooks are now installed via Husky on `postinstall`.
+- The entire dev toolchain was replaced by a single `isotropic-dev-dependencies` dev dependency.
+- The Babel, ESLint, and nyc configuration blocks were removed from `package.json` in favor of shared configuration.
+- Git hooks are now installed via Husky on `postinstall`.
 - Recommends `node ^14.15.5` / `npm ^7.5.4`.
 
 No runtime behavior changed in this release.
@@ -74,7 +85,8 @@ No runtime behavior changed in this release.
 
 ### Changed
 
-- A `files` allowlist was added so only `lib` is published. Previously the tarball was filtered by `.npmignore`, which was removed.
+- A `files` allowlist was added so only `lib` is published.
+- `.npmignore` was removed.
 - Dependency refresh: ESLint 7, Mocha 8, nyc 15, Babel 7.10, `cross-env` 7.
 - Lint target raised to ECMAScript 2020.
 - The ESLint environment declaration was narrowed from `browser`, `es6`, and `node` to just `es6`. This is a lint-time setting only.
@@ -191,4 +203,4 @@ Initial release.
 - Default export is a generator function that takes an object and yields it, then each object in its prototype chain, ending when the chain reaches `null`.
 - The starting object is yielded first, so iterating a plain object literal yields the object, then `Object.prototype`.
 - Works on any object, including constructor functions, where it walks the static inheritance chain.
-- Requires `babel-runtime` at runtime. No `engines` constraint declared.
+- Requires `babel-runtime` at runtime.
